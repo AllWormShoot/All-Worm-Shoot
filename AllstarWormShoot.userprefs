@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\gusano.js">
     <Files>
-      <File FileName="Assets\scripts\gusano.js" Line="34" Column="1" />
+      <File FileName="Assets\scripts\gusano.js" Line="34" Column="11" />
+      <File FileName="Assets\scripts\cuerpoJs.js" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
