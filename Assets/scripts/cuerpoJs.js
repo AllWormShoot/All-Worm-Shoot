@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
-var thisTransform: Transform;
-var posAnt: Transform;
+private var thisTransform: Transform;
+private var posAnt: Transform;
 
 function Start () {
 	thisTransform = this.transform;
@@ -23,4 +23,11 @@ function mueve(posCabezon){
 
 
 function Update () {
+}
+
+function crece(){
+	//Debug.Log("Hijo de puta");
+	var cuerpo = thisTransform.GetChild(thisTransform.childCount-1);
+	var clon = Instantiate(cuerpo, cuerpo.transform.position, cuerpo.transform.rotation);
+	clon.transform.parent = cuerpo.transform.parent;
 }

@@ -6,16 +6,16 @@ function Start () {
 }
 
 function Update () {
-	if(Input.GetKey(KeyCode.UpArrow) && direcc != "abj"){
+	if(Input.GetKeyDown(KeyCode.UpArrow) && direcc != "abj"){
 		direcc = "arr";
 	}
-	else if(Input.GetKey(KeyCode.DownArrow) && direcc != "arr"){
+	else if(Input.GetKeyDown(KeyCode.DownArrow) && direcc != "arr"){
 		direcc = "abj";
 	}
-	else if(Input.GetKey(KeyCode.LeftArrow) && direcc != "der"){
+	else if(Input.GetKeyDown(KeyCode.LeftArrow) && direcc != "der"){
 		direcc = "izq";
 	}
-	else if(Input.GetKey(KeyCode.RightArrow) && direcc != "izq"){
+	else if(Input.GetKeyDown(KeyCode.RightArrow) && direcc != "izq"){
 		direcc = "der";
 	}
 }
