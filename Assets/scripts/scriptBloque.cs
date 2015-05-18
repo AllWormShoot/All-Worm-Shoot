@@ -20,7 +20,7 @@ public class scriptBloque : MonoBehaviour {
     public Material materialDureza2;
     public Material materialDureza1;
 
-    public GameObject gui;
+    public GameObject estados;
 
     // Private
     private Rigidbody rb;
@@ -87,7 +87,7 @@ public class scriptBloque : MonoBehaviour {
                     if (esDestructible) 
                     {
                         dureza = dureza - 1;
-                        gui.GetComponent<Counters>().modifyPoints(puntos);
+                        estados.GetComponent<Counters>().modifyPoints(puntos);
                         Destroy(collision.gameObject);
                         CambiarMaterial();
                         
@@ -95,7 +95,7 @@ public class scriptBloque : MonoBehaviour {
                     break;
                 case "cabezon": //Gusano
                     //Fin de partida
-                    gui.GetComponent<Counters>().endGame(0);
+                    estados.GetComponent<Counters>().endGame(0);
                     break;
                 default:
                     break;

@@ -9,6 +9,7 @@ var maxPosX: int = 0;
 var maxPosZ: int = 0;
 var cuerposLocalTransform: Transform;
 var terrenoLocalTransform: Transform;
+var estadosTransform: Transform;
 var manzanasQuedan: int = 2;
 
 //private var guiTransform: Transform; 
@@ -77,12 +78,12 @@ function Update () {
 
 function comeManzana(){
 	cuerposLocalTransform.GetComponent(cuerpoJs).crece();
-     manzanasQuedan = manzanasQuedan - 1;
-     if (manzanasQuedan <= 0){
-        Application.LoadLevel(Application.loadedLevel + 1);
-     }
+
+     //manzanasQuedan = manzanasQuedan - 1;
+     //if (manzanasQuedan <= 0){
+     //   Application.LoadLevel(Application.loadedLevel + 1);
+     //}
         
-    //guiTransform.GetComponent(Counters).modifyPoints(200);
 }
 
 function muereBicho(){
@@ -93,7 +94,7 @@ function OnCollisionEnter(colision: Collision){
 	Debug.Log(colision.gameObject.tag);
 	if(colision.gameObject.tag == 'manzana'){
 		comeManzana();
-        Destroy(colision.gameObject);
+        //Destroy(colision.gameObject);
 	}
 	else if(colision.gameObject.tag == 'rompible'){
 		muereBicho();
