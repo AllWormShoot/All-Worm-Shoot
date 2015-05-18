@@ -3,7 +3,7 @@
 # =============== #
 # git rm -r --cached .
 # git add .
-# git commit -m ".gitignore noew working"
+# git commit -m ".gitignore now working"
 
 # =============== #
 # Unity generated #
@@ -13,7 +13,6 @@
 [Bb]uild*/
 [Ll]ibrary/
 sysinfo.txt
-*.meta
 *.exe
 
 # ===================================== #
