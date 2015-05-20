@@ -38,7 +38,6 @@ public class fire : MonoBehaviour {
         //Debug.Log("Entrando",this.gameObject);
         if (this.tag != collision.gameObject.tag)
         {
-
             switch (collision.gameObject.tag)
             {
                 case "manzana":

@@ -17,7 +17,7 @@ public class manzanaColision : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Colision Apple con " + collision.gameObject.name);
+        //Debug.Log("Colision Apple con " + collision.gameObject.name);
         switch (collision.gameObject.name)
         {
             case "gusanazo":case "cuerpo":
