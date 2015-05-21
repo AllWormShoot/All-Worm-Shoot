@@ -5,16 +5,6 @@ public class manzanaColision : MonoBehaviour {
 
     public GameObject estados;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Colision Apple con " + collision.gameObject.name);
@@ -27,6 +17,5 @@ public class manzanaColision : MonoBehaviour {
             default:
                 break;
         }
-
     }
 }

@@ -11,9 +11,4 @@ public class fieldScr : MonoBehaviour {
         Alto = 20;
         Ancho = 30;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

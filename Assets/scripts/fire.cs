@@ -8,14 +8,10 @@ public class fire : MonoBehaviour {
     public bool balaDisparada = false;
 	public GameObject Cabezon;
 	public float tiempoDestruirBala = 0.8f;
+    public GameObject Gusano;
 
     private GameObject shot;
     //private KeyCode fireButton = KeyCode.Space;
-
-    // Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,22 +29,16 @@ public class fire : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision colisionador)
     {
-        //Debug.Log("Entrando",this.gameObject);
-        if (this.tag != collision.gameObject.tag)
+        // Siempre se destruye la bala al impactar con algo
+        Destroy(this.gameObject);
+        balaDisparada = false;
+        
+        // Si impactó contra el cuerpo del gusano informa a este manualmnete (ya que se destruye antes de que la colision pueda ser propagada por el sistema)
+        if (colisionador.gameObject.tag == "cuerpo")
         {
-            switch (collision.gameObject.tag)
-            {
-                case "manzana":
-                    Destroy(this.gameObject);
-                    break;
-                case "irrompible": //Pruebas
-                    Destroy(this.gameObject);
-                    break;
-                default:
-                    break;
-            }
+            Gusano.GetComponent<gusanazoScr>().gusanoColisiona(colisionador);
         }
     }
 
