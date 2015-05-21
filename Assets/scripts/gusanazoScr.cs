@@ -20,8 +20,9 @@ public class gusanazoScr : MonoBehaviour
         cuerposTransform = Cuerpos.transform;
         tiempoMueve = 0.2f;
         
-        // Comienza el movimiento continuo del gusano
+        // Comienza el movimiento continuo del gusano 
         StartCoroutine(mueveWorm());
+
     }
 
     /** Recursiva!! Se encarga de mover el gusano constantemente */
