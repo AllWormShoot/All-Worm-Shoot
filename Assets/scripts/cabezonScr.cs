@@ -89,8 +89,7 @@ public class cabezonScr : MonoBehaviour {
 
     /** Envia las colisiones al padre (gusanazo)*/
     void OnCollisionEnter(Collision colisionador) {
-        Gusano.GetComponent<gusanazoScr>().gusanoColisiona(colisionador);
+            Gusano.GetComponent<gusanazoScr>().gusanoColisiona(colisionador);
     }
-
     
 }

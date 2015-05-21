@@ -88,7 +88,7 @@ public class scriptBloque : MonoBehaviour {
                     {
                         dureza = dureza - 1;
                         estados.GetComponent<Counters>().modifyPoints(puntos);
-                        Destroy(collision.gameObject);
+                        //Destroy(collision.gameObject);
                         CambiarMaterial();
                         
                     }
