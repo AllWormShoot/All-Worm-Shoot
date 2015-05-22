@@ -8,5 +8,5 @@ Este proyecto fue realizado para el Windows 10 Game Jam de Cádiz, celebrado en 
 durante los días 15 al 17 de mayo del 2015, por:
 
 * Antonio Arjona Rodrígez.
-* Elias de Francisco Javaloyes.
+* Elías de Francisco Javaloyes.
 * Enrique José Esteban Plaza.
