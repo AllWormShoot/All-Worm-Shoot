@@ -63,14 +63,24 @@ public class gusanazoScr : MonoBehaviour
     /** Centraliza las colisiones producidas por la cabeza del gusano y sus cuerpos */
     public void gusanoColisiona(Collision colisionador)
     {
-        if (colisionador.gameObject.tag == "manzana")
-        {
-            comeManzana();
-        }
-        else
-        {
-            muereBicho();
-        }
+		switch (colisionador.gameObject.tag) {
+			case "manzana":
+				comeManzana();
+				break;
+			case "booster":
+				Destroy (colisionador.gameObject);
+				break;
+			default:
+				muereBicho();
+				break;
+		}
     }
+
+	// Cambia la variable tiempoMueve y por ende la velocidad a la que se mueve el guzando
+	public void changeSpeed (float speed) 
+	{
+		tiempoMueve = speed;
+	}
+
 
 }
