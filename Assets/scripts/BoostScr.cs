@@ -15,24 +15,12 @@ public class BoostScr : MonoBehaviour
 	void Start () {
 		clonBoosters = new GameObject [this.amount];
 		positions = new Vector3 [this.amount];
-	}
 
-	void Update ()
-	{
-		timer += Time.deltaTime;
-
- 		if (timer >= timeCreateBooster) {
-			createBooster();
-			timer = 0;
-		}
-
-		if (timer >= timeDestroyBooster && timer < timeDestroyBooster + 1) {
-			destroyBooster ();
-		}
+		InvokeRepeating ("createBoosters", timeCreateBooster, timeCreateBooster);
 	}
 
 	// Crea y coloca en el tablero un numero dados de boosters, por defecto dos
-	private void createBooster (int amount = 2)
+	private void createBoosters ()
 	{
 		Debug.Log("Crear Boosters");
 		for (int i = 0; i < amount; i++) {
@@ -41,15 +29,20 @@ public class BoostScr : MonoBehaviour
 			positions [i] = getFreePosition();
 			Debug.Log(positions[i]);
 
-			 clonBoosters [i] = (GameObject) Instantiate (newBooster, positions [i], Quaternion.identity);
+			clonBoosters [i] = (GameObject) Instantiate (newBooster, positions [i], Quaternion.identity);
+
+			StartCoroutine(destroyBoosters());
 		}
 		Debug.Log(clonBoosters.Length);
 	}
 
-	private void destroyBooster ()
+	private IEnumerator destroyBoosters ()
 	{
+		yield return new WaitForSeconds(timeDestroyBooster);
+
 		Debug.Log("Destruir Booster");
 		if (clonBoosters.Length > 0) {
+
 			for (int i = 0; i < clonBoosters.Length; i++) {
 				Destroy(clonBoosters[i]);
 			}
