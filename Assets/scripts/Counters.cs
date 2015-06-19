@@ -13,8 +13,10 @@ public class Counters : MonoBehaviour {
     public Text TPoints;
     public GameObject[] hearts;
 
-	// Use this for initialization
-	void Start () {
+    public int SiguienteNivel;
+
+    // Use this for initialization
+    void Start () {
         Debug.Log("Start Counters");
 
         //txtClock = this.gameObject.transform.FindChild("GUI").FindChild("Clock").FindChild("txtClock").GetComponentInChildren<GUIText>(); //Esto no lo resuelve. Comprobar
@@ -97,7 +99,7 @@ public class Counters : MonoBehaviour {
                 break;
             case 1:
                 Debug.Log("Siguiente Nivel");
-                Application.LoadLevel("Level 02"); //Ant: Seleccionar el nivel
+                Application.LoadLevel(SiguienteNivel); //Ant: Seleccionar el nivel
                 break;
             default:
                 break;
