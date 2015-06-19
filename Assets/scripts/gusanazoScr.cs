@@ -11,7 +11,8 @@ public class gusanazoScr : MonoBehaviour
     private Transform cabezonTransform;
     private Transform cuerposTransform;
     private float tiempoMueve; // Intervalo en segundos en que se mueve el gusano
-    
+
+    public GameObject estados;
 
     void Start()
     {
@@ -57,6 +58,7 @@ public class gusanazoScr : MonoBehaviour
 
     void muereBicho()
     {
+        estados.GetComponent<Counters>().decreaseLife();
         Application.LoadLevel(Application.loadedLevel);
     }
 

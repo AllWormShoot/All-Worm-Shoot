@@ -61,7 +61,9 @@ public class cabezonScr : MonoBehaviour {
     /** Devuelve la posicion en el espacio en base a los cubos de los que esta compuesto el terreno*/
     Vector3 getPosTablero()
     {
-        var pos = terrenoTransform.GetChild(posX).transform.GetChild(posZ).position;
+        
+        var pos = terrenoTransform.GetChild(posX).transform.GetChild(posZ).position; //Indice en X de los hijos de field. Indice en Z de los hijos de cada X
+        Debug.Log("Posción tablero (x,z)=(" + posX + ", " + posZ + ")");
         pos.y = 1;
         return pos;
     }
