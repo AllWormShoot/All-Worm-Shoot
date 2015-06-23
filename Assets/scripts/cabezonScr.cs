@@ -63,7 +63,7 @@ public class cabezonScr : MonoBehaviour {
     {
         
         var pos = terrenoTransform.GetChild(posX).transform.GetChild(posZ).position; //Indice en X de los hijos de field. Indice en Z de los hijos de cada X
-        Debug.Log("Posción tablero (x,z)=(" + posX + ", " + posZ + ")");
+        //Debug.Log("Posción tablero (x,z)=(" + posX + ", " + posZ + ")");
         pos.y = 1;
         return pos;
     }

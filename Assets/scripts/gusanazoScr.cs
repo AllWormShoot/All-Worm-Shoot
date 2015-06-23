@@ -59,7 +59,8 @@ public class gusanazoScr : MonoBehaviour
     void muereBicho()
     {
         estados.GetComponent<Counters>().decreaseLife();
-        Application.LoadLevel(Application.loadedLevel);
+        
+        //Application.LoadLevel(Application.loadedLevel); //Controlado por las vidas
     }
 
     /** Centraliza las colisiones producidas por la cabeza del gusano y sus cuerpos */
