@@ -20,6 +20,15 @@ public class staticValuesScr : MonoBehaviour {
         _lifes = lifes;
     }
 
+    public int getPoints()
+    {
+        return _points;
+    }
+
+    public void setPoints(int points)
+    {
+        _points = points;
+    }
     
     /*
      * Recupera si el nivel es nuevo (nueva escena) o estamos en la misma escena
@@ -32,7 +41,9 @@ public class staticValuesScr : MonoBehaviour {
 
     public void setNewLevel(bool newLevel)
     {
+        
         _newLevel = newLevel;
+        setPoints(0);
         setLives(defaultLifes);
     }
 }

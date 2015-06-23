@@ -3,9 +3,12 @@ using System.Collections;
 
 public class buttons : MonoBehaviour {
 
+    public GameObject estados;
+
     public void NewGame()
     {
         Debug.Log("NewGame");
+        estados.GetComponent<staticValuesScr>().setNewLevel(true);
         Application.LoadLevel("Level 01");
     }
 
