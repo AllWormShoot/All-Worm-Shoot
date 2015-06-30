@@ -70,6 +70,12 @@ public class gusanazoScr : MonoBehaviour
 				comeManzana();
 				break;
 			case "booster":
+				string name = colisionador.gameObject.name;
+				
+				name = name.Replace("(Clone)", "");
+
+				boosterApply(name);
+				
 				Destroy (colisionador.gameObject);
 				break;
 			default:
@@ -78,11 +84,81 @@ public class gusanazoScr : MonoBehaviour
 		}
     }
 
+	private void boosterApply (string boosterName)
+	{
+		switch (boosterName) {
+			case "hasteBuff":
+				Debug.Log(boosterName);
+	
+				changeSpeed(0.1f);
+				Debug.Log(tiempoMueve);
+				break;
+			case "hasteDebuff":
+				Debug.Log(boosterName);
+				
+				changeSpeed(0.4f);
+				break;
+			case "lifeBuff":
+				Debug.Log(boosterName);
+
+				estados.GetComponent<Counters>().increaseLife();
+				break;
+			case "lifeDebuff":
+				Debug.Log(boosterName);
+
+				estados.GetComponent<Counters>().decreaseLife();
+				break;
+			case "pointBuff":
+				Debug.Log(boosterName);
+
+				estados.GetComponent<Counters>().increasePointsMultiplier();
+				break;
+			case "pointDebuff":
+				Debug.Log(boosterName);
+
+				estados.GetComponent<Counters>().decreasePointsMultiplier();
+				break;
+		}
+	}
+
 	// Cambia la variable tiempoMueve y por ende la velocidad a la que se mueve el guzando
 	public void changeSpeed (float speed) 
 	{
-		tiempoMueve = speed;
+		if (tiempoMueve == 0.2f) { // la velocidad del guzano no se ha variado antes
+			tiempoMueve = speed;
+			
+			StartCoroutine(restoreSpeed());
+		}
+		else {
+			if (tiempoMueve < 0.2f) { // Si la velocida ya se habia aumentado...
+				if (speed < 0.2f) { // ...y se obtiene otro hasteBuff, entonces se reinicia la co-rutina
+					StopCoroutine (restoreSpeed());
+					
+					StartCoroutine (restoreSpeed());
+				}
+				else { // ...y se obtiene un hasteDebuff, se restaura la velocidad
+					tiempoMueve = 0.2f;
+				}
+			}
+			else { // Si la velocidad ya se habia disminuido...
+				if (speed < 0.2f) { // ...y se obtiene otro hasteBuff, se restaura la velocidad
+					tiempoMueve = 0.21f;
+				}
+				else { // ...y se obtiene un hasteDebuff, se reinicia la co-rotina
+					StopCoroutine (restoreSpeed());
+					
+					StartCoroutine (restoreSpeed());
+				}
+			}
+		}
+
 	}
 
+	// Restaura la velocidad del guzano (por defecto 0.2f)
+	private IEnumerator restoreSpeed()
+	{
+		yield return new WaitForSeconds(10);
 
+		tiempoMueve = 0.2f;
+	}
 }
