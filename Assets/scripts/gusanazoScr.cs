@@ -6,11 +6,14 @@ public class gusanazoScr : MonoBehaviour
     public GameObject Terreno;
     public GameObject Cuerpos;
     public GameObject Cabezon;
+	public int durationOfSpeedChanged = 10; // Tiempo en segundos que durara los efectos de cambio de velocidad producidos por un booster
 
     private Transform gusanoTransform;
     private Transform cabezonTransform;
     private Transform cuerposTransform;
     private float tiempoMueve; // Intervalo en segundos en que se mueve el gusano
+	private int counterForRestoreSpeed; // Contador de tiempo, usado en la co-rutina 'restoreSpeed ()'
+	private bool restardCounterForRestoreSpeed = false; // Indica si el contador (counterForRestoreSpeed) debe ser reiniciado
 
     public GameObject estados;
 
@@ -132,9 +135,8 @@ public class gusanazoScr : MonoBehaviour
 		else {
 			if (tiempoMueve < 0.2f) { // Si la velocida ya se habia aumentado...
 				if (speed < 0.2f) { // ...y se obtiene otro hasteBuff, entonces se reinicia la co-rutina
-					StopCoroutine (restoreSpeed());
-					
-					StartCoroutine (restoreSpeed());
+					restardCounterForRestoreSpeed = true;
+					Debug.Log("restoreSpeed");
 				}
 				else { // ...y se obtiene un hasteDebuff, se restaura la velocidad
 					tiempoMueve = 0.2f;
@@ -145,20 +147,37 @@ public class gusanazoScr : MonoBehaviour
 					tiempoMueve = 0.21f;
 				}
 				else { // ...y se obtiene un hasteDebuff, se reinicia la co-rotina
-					StopCoroutine (restoreSpeed());
-					
-					StartCoroutine (restoreSpeed());
+					restardCounterForRestoreSpeed = true;
 				}
 			}
 		}
 
 	}
 
-	// Restaura la velocidad del guzano (por defecto 0.2f)
+	// Corutina que restaura la velocidad del guzano (por defecto 0.2f)
 	private IEnumerator restoreSpeed()
 	{
-		yield return new WaitForSeconds(10);
+		counterForRestoreSpeed = 0;
 
-		tiempoMueve = 0.2f;
+		// Cada seguno se aumenta el contador (counterForRestoreSpeed) hasta que este alcanza duracion establecida (durationOfSpeedChanged)
+		//    para el cambio de velocidad
+		do {
+			yield return new WaitForSeconds (1);
+
+			if (restardCounterForRestoreSpeed) {
+				counterForRestoreSpeed = 0;
+
+				restardCounterForRestoreSpeed = false;
+			}
+			else {
+				counterForRestoreSpeed ++;
+			}
+
+			Debug.Log(counterForRestoreSpeed);
+		} while (counterForRestoreSpeed < durationOfSpeedChanged);
+
+		tiempoMueve = 0.2f; // Restaura la velocidad
+
+		yield return null; // terminar co-routina
 	}
 }
