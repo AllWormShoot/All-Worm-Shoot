@@ -8,7 +8,7 @@ public class gusanazoScr : MonoBehaviour
     public GameObject Cabezon;
 	public int durationOfSpeedChanged = 10; // Tiempo en segundos que durara los efectos de cambio de velocidad producidos por un booster
 
-    private Transform gusanoTransform;
+    //private Transform gusanoTransform;
     private Transform cabezonTransform;
     private Transform cuerposTransform;
     private float tiempoMueve; // Intervalo en segundos en que se mueve el gusano
@@ -19,7 +19,7 @@ public class gusanazoScr : MonoBehaviour
 
     void Start()
     {
-        gusanoTransform = this.transform;
+        //gusanoTransform = this.transform;
         cabezonTransform = Cabezon.transform;
         cuerposTransform = Cuerpos.transform;
         tiempoMueve = 0.2f;
