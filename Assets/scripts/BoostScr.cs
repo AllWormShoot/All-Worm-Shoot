@@ -1,16 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BoostScr : MonoBehaviour 
 {
-	public float timeCreateBooster = 20; // Tiempo en segundos que tardara en crear un booster
-	public float timeDestroyBooster = 10; // Tiempo en segundos que tardara en destruir un booster
-	public GameObject [] boosters ; // Array que contendra una coleccion de objetos booster
-	public int amount = 2; // Cantidad de booster que se van a generar
+	public float timeCreateBooster = 30; // Tiempo en segundos que se tardara en crear un booster
+	public float timeDestroyBooster = 10; // Tiempo en segundos que se tardara en destruir un booster
+	public GameObject [] boosters; // Array que contendra toda la coleccion de objetos booster
+	public int amount = 2; // Cantidad de booster que se van a generar aleatoriamente para introducirlos en el escenario
 
-	private float timer = 0; // Controladora del tiempo transcurrido
-	private GameObject [] clonBoosters; // Clon de un objeto booster elegido aleatorimente
-	private Vector3 [] positions; // Contiene las posiciones de los boosters clonados
+	private GameObject [] clonBoosters; // Lista de boosters seleccionados aleatorimente para incluirlos en el escenario
+	private Vector3 [] positions; // Contiene las posiciones de los boosters selecionados (el booster seleccionado clonBoosters [i] tendra la posicion positions [i])
 
 	void Start () {
 		clonBoosters = new GameObject [this.amount];
@@ -19,28 +18,28 @@ public class BoostScr : MonoBehaviour
 		InvokeRepeating ("createBoosters", timeCreateBooster, timeCreateBooster);
 	}
 
-	// Crea y coloca en el tablero un numero dados de boosters, por defecto dos
+	// Crea y posiciona en el tablero un numero dados de boosters (por defecto dos boosters)
 	private void createBoosters ()
 	{
-		Debug.Log("Crear Boosters");
+		//Debug.Log("Crear Boosters");
 		for (int i = 0; i < amount; i++) {
-			GameObject newBooster = getClonBooster();
+			GameObject newBooster = getBooster();
 
 			positions [i] = getFreePosition();
-			Debug.Log(positions[i]);
+			//Debug.Log(positions[i]);
 
-			clonBoosters [i] = (GameObject) Instantiate (newBooster, positions [i], Quaternion.identity);
+			clonBoosters [i] = (GameObject) Instantiate (newBooster, positions [i], newBooster.transform.rotation);
 
 			StartCoroutine(destroyBoosters());
 		}
-		Debug.Log(clonBoosters.Length);
 	}
 
+	// Corutica que destruye todos los booster del tablero
 	private IEnumerator destroyBoosters ()
 	{
+		//Debug.Log("Destruir Booster");
 		yield return new WaitForSeconds(timeDestroyBooster);
 
-		Debug.Log("Destruir Booster");
 		if (clonBoosters.Length > 0) {
 
 			for (int i = 0; i < clonBoosters.Length; i++) {
@@ -67,24 +66,30 @@ public class BoostScr : MonoBehaviour
 		}
 	}
 
-	// Obtiene un booster aleatorio del array boosters, luego comprueba que no exista y lo debuelve, el proceso se repite hasta que
-	//    obtenga el booster no repetido
-	private GameObject getClonBooster ()
+	// Obtiene un booster aleatorio del array boosters, luego comprueba que no este selecionado ya y de no ser asi lo debuelve,
+	//    el proceso es repitido hasta que obtenga un booster no selecionado con aterioridad
+	private GameObject getBooster ()
 	{
-		int boostIndex;
+		int boostersArrayIndex;
 		GameObject newBooster;
-		bool alreadyExist = false;
+		bool alreadyExist;
 
 		do {
-			boostIndex = Random.Range(0, boosters.Length-1);
-			newBooster = boosters [boostIndex];
+			alreadyExist = false;
 
-			foreach (GameObject boosterElement in clonBoosters) {
-				if (boosterElement == newBooster) {
-					alreadyExist = true;
+			boostersArrayIndex = Random.Range(0, boosters.Length-1);
+			newBooster = boosters [boostersArrayIndex];
+
+			if (clonBoosters.Length > 0) {
+				foreach (GameObject boosterElement in clonBoosters) {
+					if (boosterElement != null && boosterElement.name == newBooster.name) {
+						alreadyExist = true; // El booster nuevo ya esta en la lista de seleccionados, por  tanto se eligira uno nuevo aleatorio
+					}
 				}
 			}
+
 		} while (alreadyExist == true);
+
 
 		return newBooster;
 	}

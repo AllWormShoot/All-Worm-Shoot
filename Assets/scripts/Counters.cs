@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Counters : MonoBehaviour {
 
     public int _points;
+	public int _pointsMultiplier;
     public int _apples;
     public int _lifes;
     public int _time;
@@ -20,6 +21,8 @@ public class Counters : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Debug.Log("Start Counters");
+
+		_pointsMultiplier = 1;
 
         //txtClock = this.gameObject.transform.FindChild("GUI").FindChild("Clock").FindChild("txtClock").GetComponentInChildren<GUIText>(); //Esto no lo resuelve. Comprobar
 
@@ -64,8 +67,9 @@ public class Counters : MonoBehaviour {
 
     public void modifyPoints(int point)
     {
-
-       Debug.Log("incrementando puntos " + _points + " en " + point);
+		Debug.Log("incrementando puntos " + _points + " en " + point);
+		
+		point *= _pointsMultiplier;
 
         _points += point;
 
@@ -79,6 +83,18 @@ public class Counters : MonoBehaviour {
 			}
     }
 
+    public void decreasePointsMultiplier ()
+	{
+		if (_pointsMultiplier > 1) {
+			_pointsMultiplier--;
+		}
+	}
+
+	public void increasePointsMultiplier ()
+	{
+		_pointsMultiplier++;
+	}
+
     public void decreaseLife()
     {
         
@@ -91,10 +107,10 @@ public class Counters : MonoBehaviour {
             estados.GetComponent<staticValuesScr>().setLives(_lifes); //Baja el contador global de vidas
             endGame(0);
         }
-
     }
 
-    public void IncreaseLife()
+
+    public void increaseLife()
     {
         //Para la suma de vidas de los boosters
         if (_lifes <= 5)
@@ -105,6 +121,17 @@ public class Counters : MonoBehaviour {
             estados.GetComponent<staticValuesScr>().setLives(_lifes); //Baja el contador global de vidas
         }
     }
+	/** Rama Boosters */
+    /*
+    public void increaseLife ()
+	{
+		Debug.Log("Una vida extra (max. 3), tienes " + _lifes);
+		
+		if (_lifes < 3) {
+			_lifes += 1;
+		}
+	}
+     * */
 
     private IEnumerator decreaseTime1Sec()
     {
@@ -141,4 +168,19 @@ public class Counters : MonoBehaviour {
 
     }
     
+
+	/*public void modifyPoints(int point)
+	{
+		
+		Debug.Log("incrementando puntos " + _points + " en " + point);
+		
+		_points += (point * _pointsMultiplier);
+		
+	}
+	
+
+		
+	}*/
+	
+
 }

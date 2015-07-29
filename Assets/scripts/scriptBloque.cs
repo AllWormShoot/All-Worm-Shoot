@@ -23,24 +23,24 @@ public class scriptBloque : MonoBehaviour {
     public GameObject estados;
 
     // Private
-    private Rigidbody rb;
+    //private Rigidbody rb;
     private Renderer rend;
 
     private Material material; // Material, relacionado con el tipo de objeto (Fijo, Destructibles (3 tipos))
-    private float thrust = 50;
+    //private float thrust = 50;
 
     private KeyCode moveLeft = KeyCode.LeftArrow;
     private KeyCode moveRight = KeyCode.RightArrow;
     private KeyCode moveForward = KeyCode.UpArrow;
     private KeyCode moveBackward = KeyCode.DownArrow;
 
-    bool protectColisionBloque = false;
+    //bool protectColisionBloque = false;
 
     private Vector2 input;
 
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
 	}
 	
